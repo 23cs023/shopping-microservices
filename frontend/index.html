@@ -1039,6 +1039,62 @@ const API_BASE_URL = "http://localhost:8080";
 
 let productsList = [];
 
+/* =====================================================
+   STATIC PRODUCTS FOR VERCEL DEPLOYMENT
+   These products work without Spring Boot/MySQL.
+   ===================================================== */
+
+const STATIC_PRODUCTS = [
+    {
+        id: 1,
+        name: "Wireless Headphones",
+        price: 1999,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"
+    },
+    {
+        id: 2,
+        name: "Smart Watch",
+        price: 3499,
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"
+    },
+    {
+        id: 3,
+        name: "Laptop Backpack",
+        price: 1499,
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"
+    },
+    {
+        id: 4,
+        name: "Bluetooth Speaker",
+        price: 1299,
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500"
+    },
+    {
+        id: 5,
+        name: "Running Shoes",
+        price: 2499,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
+    },
+    {
+        id: 6,
+        name: "Mobile Phone",
+        price: 15999,
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+    },
+    {
+        id: 7,
+        name: "Sunglasses",
+        price: 999,
+        image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500"
+    },
+    {
+        id: 8,
+        name: "Gaming Mouse",
+        price: 1799,
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500"
+    }
+];
+
 let cart = [];
 
 let activeCheckoutItem = null;
@@ -1418,120 +1474,32 @@ async function loadProducts() {
         return;
     }
 
-    try {
+    /*
+     * Products are loaded directly from frontend.
+     * No Spring Boot or MySQL is required for displaying products.
+     */
 
-        homeContainer.innerHTML =
-            `
-            <div class="loading-message">
-                Loading products...
-            </div>
-            `;
+    productsList = [...STATIC_PRODUCTS];
 
-        allContainer.innerHTML =
-            `
-            <div class="loading-message">
-                Loading products...
-            </div>
-            `;
+    /*
+     * HOME
+     * First 4 products
+     */
 
-        const response =
-            await fetch(
-                API_BASE_URL +
-                "/products"
-            );
+    renderProducts(
+        productsList.slice(0, 4),
+        "homeProducts"
+    );
 
-        if (!response.ok) {
+    /*
+     * PRODUCTS
+     * All products
+     */
 
-            throw new Error(
-                "HTTP " +
-                response.status
-            );
-
-        }
-
-        const data =
-            await response.json();
-
-        console.log(
-            "Products from MySQL:",
-            data
-        );
-
-        if (!Array.isArray(data)) {
-
-            throw new Error(
-                "Backend response is not an array"
-            );
-
-        }
-
-        productsList = data;
-
-        /*
-         * HOME
-         * First 4 products
-         */
-
-        renderProducts(
-            productsList.slice(0, 4),
-            "homeProducts"
-        );
-
-        /*
-         * PRODUCTS
-         * All products
-         */
-
-        renderProducts(
-            productsList,
-            "allProducts"
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Product loading error:",
-            error
-        );
-
-        homeContainer.innerHTML =
-            `
-            <div class="error-message">
-
-                <strong>
-                    Unable to load products.
-                </strong>
-
-                <br><br>
-
-                Backend:
-                ${API_BASE_URL}/products
-
-                <br><br>
-
-                Make sure Spring Boot
-                and MySQL are running.
-
-            </div>
-            `;
-
-        allContainer.innerHTML =
-            `
-            <div class="error-message">
-
-                <strong>
-                    Unable to load products.
-                </strong>
-
-                <br><br>
-
-                Please check Spring Boot
-                backend and MySQL.
-
-            </div>
-            `;
-
-    }
+    renderProducts(
+        productsList,
+        "allProducts"
+    );
 
 }
 
