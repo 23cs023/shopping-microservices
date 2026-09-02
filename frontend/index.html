@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ShopCentral | Online Shopping</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f4f7f9;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #131921;
+            color: white;
+            padding: 14px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            color: #ff9900;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            max-width: 550px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-box button {
+            padding: 12px 20px;
+            border: none;
+            background: #ff9900;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: #ff9900;
+        }
+
+        .cart-status {
+            background: #ff9900;
+            color: #131921;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .logout-link {
+            color: #ff9900 !important;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 25px 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(135deg, #232f3e, #37475a);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+            border-radius: 10px;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            margin: 8px 0;
+        }
+
+        .view-more-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background: #ff9900;
+            color: #111;
+            padding: 14px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .view-more-btn:hover {
+            background: #ffad32;
+        }
+
+        
+
+        .section-title {
+            font-size: 30px;
+            margin-bottom: 25px;
+            color: #232f3e;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 18px;
+}
+
+.product-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    padding: 14px;
+    min-height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 28px rgba(108, 92, 231, 0.22);
+    border-color: #6c5ce7;
+}
+
+.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    margin-bottom: 8px;
+
+    background: #f8f9ff;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2d3436;
+    margin: 6px 0;
+    min-height: auto;
+}
+
+.product-price {
+    color: #e17000;
+    font-size: 22px;
+    font-weight: 800;
+    margin: 6px 0 10px;
+}
+
+        .action-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn {
+            border: none;
+            padding: 11px 15px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 15px;
+        }
+
+        .btn-cart {
+            background: #ffd814;
+            border: 1px solid #fcd200;
+        }
+
+        .btn-cart:hover {
+            background: #f7ca00;
+        }
+
+        .btn-buy {
+            background: #ffa41c;
+            border: 1px solid #ff8f00;
+        }
+
+        .btn-buy:hover {
+            background: #f08804;
+        }
+
+        .delete-btn {
+            background: #ffdddd;
+            color: #b00020;
+            border: 1px solid #ffb3b3;
+        }
+
+        .delete-btn:hover {
+            background: #ffcaca;
+        }
+
+        .cancel-btn {
+            background: #ddd;
+            color: #333;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .error-message {
+            background: #fff0f0;
+            color: #b00020;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .empty-message {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        /* ================= LOGIN USER INFO ================= */
+
+        .user-info {
+            background: #eef3f8;
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        /* ================= ADD PRODUCT ================= */
+
+        .add-product-btn {
+            max-width: 220px;
+            margin-bottom: 20px;
+        }
+
+        .form-card {
+            background: white;
+            max-width: 650px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-card h2 {
+            color: #232f3e;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #ff9900;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-card {
+            background: white;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .about-card h2 {
+            margin-bottom: 20px;
+            color: #131921;
+        }
+
+        .about-card h3 {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #232f3e;
+        }
+
+        .about-card p {
+            margin-bottom: 10px;
+        }
+
+        .about-card ul {
+            margin-left: 25px;
+        }
+
+        /* ================= CART ================= */
+
+        .cart-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .cart-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .cart-price {
+            font-weight: bold;
+            color: #b12704;
+        }
+
+        .cart-remove {
+            width: auto;
+            padding: 8px 15px;
+        }
+
+        .cart-total-box {
+            background: #eef3f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* ================= CHECKOUT ================= */
+
+        .checkout-summary {
+            background: #eef3f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .checkout-summary p {
+            margin-top: 10px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .nav-container {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="nav-container">
+
+        <div class="logo"
+             onclick="showPage('home')">
+
+            ShopCentral
+
+        </div>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+                onkeyup="filterProducts()"
+            >
+
+            <button onclick="filterProducts()">
+                Search
+            </button>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a onclick="showPage('home')">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="showPage('products')">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="showPage('about')">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a onclick="showPage('contact')">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a id="authNavLink"
+                       onclick="handleAuthNav()">
+                        Login
+                    </a>
+                </li>
+
+                <li>
+
+                    <a onclick="handleCartNavigation()">
+
+                        🛒 Cart
+
+                        <span
+                            class="cart-status"
+                            id="cartCount">
+                            0
+                        </span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+<!-- ================= HOME ================= -->
+
+<div id="home" class="page active">
+
+    <div class="hero">
+
+        <h1>
+            Welcome to ShopCentral
+        </h1>
+
+        <p>
+            Online Shopping Platform
+        </p>
+
+       
+        <div
+            class="view-more-btn"
+            onclick="showPage('products')">
+
+            Explore All Products
+
+        </div>
+
+    </div>
+
+    <h2 class="section-title">
+        Top Featured Products
+    </h2>
+
+    <div
+        class="product-grid"
+        id="homeProducts">
+
+        <div class="loading-message">
+            Loading products...
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= PRODUCTS ================= -->
+
+<div id="products" class="page">
+
+    <h2 class="section-title">
+        Product Store
+    </h2>
+
+    <div
+        id="loggedUserInfo"
+        class="user-info"
+        style="display:none;">
+    </div>
+
+    <button
+        class="btn btn-buy add-product-btn"
+        onclick="showAddProductForm()">
+
+        ➕ Add Product
+
+    </button>
+
+    <!-- ADD PRODUCT FORM -->
+
+    <div
+        id="addProductForm"
+        class="form-card"
+        style="display:none;">
+
+        <h2>
+            Add New Product
+        </h2>
+
+        <div class="form-group">
+
+            <label>
+                Product Name
+            </label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Enter product name"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Price
+            </label>
+
+            <input
+                type="number"
+                id="productPrice"
+                placeholder="Enter price"
+                min="0"
+                step="0.01"
+            >
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                Image URL
+            </label>
+
+            <input
+                type="url"
+                id="productImage"
+                placeholder="https://example.com/image.jpg"
+            >
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button
+                class="btn btn-buy"
+                onclick="addProduct()">
+
+                Add Product
+
+            </button>
+
+            <button
+                class="btn cancel-btn"
+                onclick="hideAddProductForm()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        class="product-grid"
+        id="allProducts">
+
+        <div class="loading-message">
+            Loading products...
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= ABOUT ================= -->
+
+<div id="about" class="page">
+
+    <div class="about-card">
+
+        <h2>
+            About ShopCentral
+        </h2>
+
+        <p>
+
+            <strong>ShopCentral</strong>
+            is an online shopping platform created
+            using microservices and API-first architecture.
+
+        </p>
+
+        <h3>
+            Mission & Vision
+        </h3>
+
+        <p>
+
+            Our goal is to provide a simple,
+            fast and reliable online shopping experience.
+
+        </p>
+
+        
+
+        
+
+        <h3>
+            Product Service
+        </h3>
+
+        <p>
+
+            The Product Service retrieves product
+            information from MySQL through REST APIs.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ================= CONTACT ================= -->
+
+<div id="contact" class="page">
+
+    <div class="form-card">
+
+        <h2>
+            Contact Us
+        </h2>
+
+        <form onsubmit="sendMessage(event)">
+
+            <div class="form-group">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    required
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Message
+                </label>
+
+                <textarea
+                    rows="4"
+                    required
+                    placeholder="Enter your message"></textarea>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-buy">
+
+                Send Message
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="login" class="page">
+
+    <div class="form-card">
+
+        <h2>
+            🔐 Login
+        </h2>
+
+        <form onsubmit="loginUser(event)">
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-buy">
+
+                Sign In
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ================= CART ================= -->
+
+<div id="cart" class="page">
+
+    <h2 class="section-title">
+        🛒 Your Shopping Cart
+    </h2>
+
+    <div id="cartItems">
+    </div>
+
+    <div class="cart-total-box">
+
+        <h2 id="cartTotal">
+            Total: ₹0
+        </h2>
+
+        <br>
+
+        <button
+            class="btn btn-buy"
+            style="max-width:250px;"
+            onclick="proceedCartCheckout()">
+
+            Proceed to Checkout
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= CHECKOUT ================= -->
+
+<div id="checkout" class="page">
+
+    <div class="form-card">
+
+        <h2>
+            Order Checkout
+        </h2>
+
+        <div
+            class="checkout-summary"
+            id="checkoutSummary">
+        </div>
+
+        <form onsubmit="processOrder(event)">
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="checkoutName"
+                    required
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Delivery Address
+                </label>
+
+                <textarea
+                    id="checkoutAddress"
+                    rows="3"
+                    required
+                    placeholder="Enter your address"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select
+                    id="paymentMethod"
+                    required>
+
+                    <option value="upi">
+                        UPI / GPay / PhonePe
+                    </option>
+
+                    <option value="card">
+                        Credit / Debit Card
+                    </option>
+
+                    <option value="cod">
+                        Cash on Delivery
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-buy">
+
+                ✅ Place Order
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+/* =====================================================
+   BACKEND
+   ===================================================== */
+
+const API_BASE_URL = "http://localhost:8080";
+
+let productsList = [];
+
+let cart = [];
+
+let activeCheckoutItem = null;
+
+
+/* =====================================================
+   AUTH HELPER
+   ===================================================== */
+
+function isLoggedIn() {
+
+    return localStorage.getItem(
+        "shopcentral_logged_in"
+    ) === "true";
+
+}
+
+
+function getLoggedUserEmail() {
+
+    return localStorage.getItem(
+        "shopcentral_user_email"
+    );
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+   ===================================================== */
+
+function showPage(pageId) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+    const page =
+        document.getElementById(pageId);
+
+    if (page) {
+
+        page.classList.add("active");
+
+    }
+
+    window.scrollTo(0, 0);
+
+    if (
+        pageId === "home" ||
+        pageId === "products"
+    ) {
+
+        loadProducts();
+
+    }
+
+    if (pageId === "cart") {
+
+        updateCartUI();
+
+    }
+
+}
+
+
+/* =====================================================
+   CART NAVIGATION - LOGIN REQUIRED
+   ===================================================== */
+
+function handleCartNavigation() {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to view your cart."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    showPage("cart");
+
+}
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+async function loginUser(event) {
+
+    event.preventDefault();
+
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+    if (!email || !password) {
+
+        alert(
+            "Please enter email and password."
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL + "/auth/login",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        email: email,
+
+                        password: password
+
+                    })
+
+                }
+            );
+
+        const data =
+            await response.json();
+
+        console.log(
+            "Login response:",
+            data
+        );
+
+        if (!response.ok) {
+
+            alert(
+                data.message ||
+                "Invalid email or password."
+            );
+
+            return;
+
+        }
+
+        localStorage.setItem(
+            "shopcentral_logged_in",
+            "true"
+        );
+
+        localStorage.setItem(
+            "shopcentral_user_email",
+            data.user || email
+        );
+
+        updateAuthUI();
+
+        alert(
+            "Login successful! ✅"
+        );
+
+        document.getElementById(
+            "loginEmail"
+        ).value = "";
+
+        document.getElementById(
+            "loginPassword"
+        ).value = "";
+
+        showPage("home");
+
+    } catch (error) {
+
+        console.error(
+            "Login error:",
+            error
+        );
+
+        alert(
+            "Cannot connect to backend.\n\n" +
+            "Make sure Spring Boot is running on port 8080."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logoutUser() {
+
+    localStorage.removeItem(
+        "shopcentral_logged_in"
+    );
+
+    localStorage.removeItem(
+        "shopcentral_user_email"
+    );
+
+    updateAuthUI();
+
+    alert(
+        "Logged out successfully!"
+    );
+
+    showPage("home");
+
+}
+
+
+/* =====================================================
+   LOGIN / LOGOUT NAVIGATION
+   ===================================================== */
+
+function handleAuthNav() {
+
+    if (isLoggedIn()) {
+
+        logoutUser();
+
+    } else {
+
+        showPage("login");
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE AUTH UI
+   ===================================================== */
+
+function updateAuthUI() {
+
+    const authLink =
+        document.getElementById(
+            "authNavLink"
+        );
+
+    const userInfo =
+        document.getElementById(
+            "loggedUserInfo"
+        );
+
+    if (!authLink) return;
+
+    if (isLoggedIn()) {
+
+        authLink.textContent =
+            "Logout";
+
+        authLink.classList.add(
+            "logout-link"
+        );
+
+        if (userInfo) {
+
+            userInfo.style.display =
+                "block";
+
+            userInfo.innerHTML =
+                "👤 Logged in as: <strong>" +
+                escapeHtml(
+                    getLoggedUserEmail()
+                ) +
+                "</strong>";
+
+        }
+
+    } else {
+
+        authLink.textContent =
+            "Login";
+
+        authLink.classList.remove(
+            "logout-link"
+        );
+
+        if (userInfo) {
+
+            userInfo.style.display =
+                "none";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   PRODUCT FIELD HELPERS
+   ===================================================== */
+
+function getProductId(product) {
+
+    return product.id ??
+           product.productId;
+
+}
+
+
+function getProductName(product) {
+
+    return product.name ??
+           product.productName ??
+           "Unnamed Product";
+
+}
+
+
+function getProductPrice(product) {
+
+    return Number(
+        product.price ??
+        product.productPrice ??
+        0
+    );
+
+}
+
+
+function getProductImage(product) {
+
+    return product.image ??
+           product.imageUrl ??
+           product.productImage ??
+           "https://via.placeholder.com/300x200?text=No+Image";
+
+}
+
+
+/* =====================================================
+   LOAD PRODUCTS
+   ===================================================== */
+
+async function loadProducts() {
+
+    const homeContainer =
+        document.getElementById(
+            "homeProducts"
+        );
+
+    const allContainer =
+        document.getElementById(
+            "allProducts"
+        );
+
+    if (!homeContainer || !allContainer) {
+        return;
+    }
+
+    try {
+
+        homeContainer.innerHTML =
+            `
+            <div class="loading-message">
+                Loading products...
+            </div>
+            `;
+
+        allContainer.innerHTML =
+            `
+            <div class="loading-message">
+                Loading products...
+            </div>
+            `;
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/products"
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+        console.log(
+            "Products from MySQL:",
+            data
+        );
+
+        if (!Array.isArray(data)) {
+
+            throw new Error(
+                "Backend response is not an array"
+            );
+
+        }
+
+        productsList = data;
+
+        /*
+         * HOME
+         * First 4 products
+         */
+
+        renderProducts(
+            productsList.slice(0, 4),
+            "homeProducts"
+        );
+
+        /*
+         * PRODUCTS
+         * All products
+         */
+
+        renderProducts(
+            productsList,
+            "allProducts"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Product loading error:",
+            error
+        );
+
+        homeContainer.innerHTML =
+            `
+            <div class="error-message">
+
+                <strong>
+                    Unable to load products.
+                </strong>
+
+                <br><br>
+
+                Backend:
+                ${API_BASE_URL}/products
+
+                <br><br>
+
+                Make sure Spring Boot
+                and MySQL are running.
+
+            </div>
+            `;
+
+        allContainer.innerHTML =
+            `
+            <div class="error-message">
+
+                <strong>
+                    Unable to load products.
+                </strong>
+
+                <br><br>
+
+                Please check Spring Boot
+                backend and MySQL.
+
+            </div>
+            `;
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOW ADD PRODUCT FORM
+   ===================================================== */
+
+function showAddProductForm() {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to add a product."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    document.getElementById(
+        "addProductForm"
+    ).style.display = "block";
+
+    document.getElementById(
+        "productName"
+    ).focus();
+
+}
+
+
+/* =====================================================
+   HIDE ADD PRODUCT FORM
+   ===================================================== */
+
+function hideAddProductForm() {
+
+    document.getElementById(
+        "addProductForm"
+    ).style.display = "none";
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+   ===================================================== */
+
+async function addProduct() {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    const name =
+        document
+            .getElementById("productName")
+            .value
+            .trim();
+
+    const priceValue =
+        document
+            .getElementById("productPrice")
+            .value;
+
+    const image =
+        document
+            .getElementById("productImage")
+            .value
+            .trim();
+
+    if (!name || !priceValue || !image) {
+
+        alert(
+            "Please fill all product fields."
+        );
+
+        return;
+
+    }
+
+    const price =
+        parseFloat(priceValue);
+
+    if (
+        Number.isNaN(price) ||
+        price < 0
+    ) {
+
+        alert(
+            "Please enter a valid price."
+        );
+
+        return;
+
+    }
+
+    const product = {
+
+        name: name,
+
+        price: price,
+
+        image: image
+
+    };
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/products",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(product)
+
+                }
+            );
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                errorText
+            );
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+        const savedProduct =
+            await response.json();
+
+        console.log(
+            "Product saved:",
+            savedProduct
+        );
+
+        alert(
+            "Product added successfully! ✅"
+        );
+
+        document.getElementById(
+            "productName"
+        ).value = "";
+
+        document.getElementById(
+            "productPrice"
+        ).value = "";
+
+        document.getElementById(
+            "productImage"
+        ).value = "";
+
+        hideAddProductForm();
+
+        await loadProducts();
+
+        showPageWithoutReload(
+            "products"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Add product error:",
+            error
+        );
+
+        alert(
+            "Product could not be added.\n\n" +
+            "Check Spring Boot backend and MySQL."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE PRODUCT
+   ===================================================== */
+
+async function deleteProduct(
+    productId,
+    productName
+) {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to delete a product."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    const confirmed =
+        confirm(
+            `Delete "${productName}"?`
+        );
+
+    if (!confirmed) return;
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/products/" +
+                productId,
+                {
+
+                    method: "DELETE"
+
+                }
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+        cart =
+            cart.filter(
+                item =>
+                    Number(
+                        getProductId(item)
+                    ) !==
+                    Number(productId)
+            );
+
+        updateCartUI();
+
+        alert(
+            "Product deleted successfully! ✅"
+        );
+
+        await loadProducts();
+
+    } catch (error) {
+
+        console.error(
+            "Delete error:",
+            error
+        );
+
+        alert(
+            "Product could not be deleted.\n\n" +
+            "Check Spring Boot backend."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+   ===================================================== */
+
+function renderProducts(
+    items,
+    containerId
+) {
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+    if (!container) return;
+
+    if (
+        !items ||
+        items.length === 0
+    ) {
+
+        container.innerHTML =
+            `
+            <div class="empty-message">
+
+                No products available.
+
+            </div>
+            `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        items.map(product => {
+
+            const id =
+                getProductId(product);
+
+            const name =
+                getProductName(product);
+
+            const price =
+                getProductPrice(product);
+
+            const image =
+                getProductImage(product);
+
+            return `
+
+                <div class="product-card">
+
+                    <img
+                        class="product-image"
+                        src="${escapeHtml(image)}"
+                        alt="${escapeHtml(name)}"
+
+                        onerror="
+                            this.src='https://via.placeholder.com/300x200?text=No+Image'
+                        "
+                    >
+
+                    <div>
+
+                        <div class="product-title">
+
+                            ${escapeHtml(name)}
+
+                        </div>
+
+                        <div class="product-price">
+
+                            ₹${price.toLocaleString("en-IN")}
+
+                        </div>
+
+                    </div>
+
+                    <div class="action-btns">
+
+                        <button
+                            class="btn btn-cart"
+                            onclick="addToCart(${Number(id)})">
+
+                            🛒 Add to Cart
+
+                        </button>
+
+                        <button
+                            class="btn btn-buy"
+                            onclick="buyNow(${Number(id)})">
+
+                            ⚡ Buy Now
+
+                        </button>
+
+                        <button
+                            class="btn delete-btn"
+                            onclick='deleteProduct(
+                                ${JSON.stringify(id)},
+                                ${JSON.stringify(name)}
+                            )'>
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+function filterProducts() {
+
+    const query =
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .value
+            .toLowerCase()
+            .trim();
+
+    const filtered =
+        productsList.filter(
+            product =>
+
+                getProductName(product)
+                    .toLowerCase()
+                    .includes(query)
+
+        );
+
+    renderProducts(
+        filtered.slice(0, 4),
+        "homeProducts"
+    );
+
+    renderProducts(
+        filtered,
+        "allProducts"
+    );
+
+    showPageWithoutReload(
+        "products"
+    );
+
+}
+
+
+/* =====================================================
+   SHOW PAGE WITHOUT API RELOAD
+   ===================================================== */
+
+function showPageWithoutReload(
+    pageId
+) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+    const page =
+        document.getElementById(pageId);
+
+    if (page) {
+
+        page.classList.add("active");
+
+    }
+
+    window.scrollTo(0, 0);
+
+}
+
+
+/* =====================================================
+   ADD TO CART - LOGIN REQUIRED
+   ===================================================== */
+
+function addToCart(productId) {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to Add to Cart."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    const product =
+        productsList.find(
+            item =>
+                Number(
+                    getProductId(item)
+                ) ===
+                Number(productId)
+        );
+
+    if (!product) {
+
+        alert(
+            "Product not found."
+        );
+
+        return;
+
+    }
+
+    cart.push(product);
+
+    updateCartUI();
+
+    alert(
+        getProductName(product) +
+        " added to Cart! 🛒"
+    );
+
+}
+
+
+/* =====================================================
+   REMOVE FROM CART
+   ===================================================== */
+
+function removeFromCart(index) {
+
+    cart.splice(
+        index,
+        1
+    );
+
+    updateCartUI();
+
+}
+
+
+/* =====================================================
+   UPDATE CART
+   ===================================================== */
+
+function updateCartUI() {
+
+    const count =
+        document.getElementById(
+            "cartCount"
+        );
+
+    const container =
+        document.getElementById(
+            "cartItems"
+        );
+
+    const totalElement =
+        document.getElementById(
+            "cartTotal"
+        );
+
+    if (count) {
+
+        count.innerText =
+            cart.length;
+
+    }
+
+    if (!container) return;
+
+    if (cart.length === 0) {
+
+        container.innerHTML =
+            `
+            <div class="empty-message">
+
+                🛒 Your cart is empty.
+
+            </div>
+            `;
+
+    } else {
+
+        container.innerHTML =
+            cart.map(
+                (item, index) => {
+
+                    const name =
+                        getProductName(item);
+
+                    const price =
+                        getProductPrice(item);
+
+                    const image =
+                        getProductImage(item);
+
+                    return `
+
+                        <div class="cart-item">
+
+                            <img
+                                src="${escapeHtml(image)}"
+                                alt="${escapeHtml(name)}"
+
+                                onerror="
+                                    this.src='https://via.placeholder.com/80?text=No+Image'
+                                "
+                            >
+
+                            <div class="cart-info">
+
+                                <h3>
+
+                                    ${escapeHtml(name)}
+
+                                </h3>
+
+                                <div class="cart-price">
+
+                                    ₹${price.toLocaleString("en-IN")}
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="btn delete-btn cart-remove"
+                                onclick="removeFromCart(${index})">
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+    const total =
+        cart.reduce(
+            (sum, item) =>
+                sum +
+                getProductPrice(item),
+            0
+        );
+
+    if (totalElement) {
+
+        totalElement.innerText =
+            "Total: ₹" +
+            total.toLocaleString("en-IN");
+
+    }
+
+}
+
+
+/* =====================================================
+   BUY NOW - LOGIN REQUIRED
+   ===================================================== */
+
+function buyNow(productId) {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to Buy Now."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    const product =
+        productsList.find(
+            item =>
+                Number(
+                    getProductId(item)
+                ) ===
+                Number(productId)
+        );
+
+    if (!product) {
+
+        alert(
+            "Product not found."
+        );
+
+        return;
+
+    }
+
+    activeCheckoutItem = {
+
+        type: "single",
+
+        data: product
+
+    };
+
+    const name =
+        getProductName(product);
+
+    const price =
+        getProductPrice(product);
+
+    document.getElementById(
+        "checkoutSummary"
+    ).innerHTML = `
+
+        <h3>
+            Order Summary
+        </h3>
+
+        <p>
+            <strong>Product:</strong>
+            ${escapeHtml(name)}
+        </p>
+
+        <p>
+            <strong>Amount Payable:</strong>
+            ₹${price.toLocaleString("en-IN")}
+        </p>
+
+    `;
+
+    showPageWithoutReload(
+        "checkout"
+    );
+
+}
+
+
+/* =====================================================
+   CART CHECKOUT - LOGIN REQUIRED
+   ===================================================== */
+
+function proceedCartCheckout() {
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to Checkout."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+    const total =
+        cart.reduce(
+            (sum, item) =>
+                sum +
+                getProductPrice(item),
+            0
+        );
+
+    activeCheckoutItem = {
+
+        type: "cart",
+
+        data: [...cart]
+
+    };
+
+    document.getElementById(
+        "checkoutSummary"
+    ).innerHTML = `
+
+        <h3>
+            Order Summary
+        </h3>
+
+        <p>
+            <strong>Items:</strong>
+            ${cart.length}
+        </p>
+
+        <p>
+            <strong>Amount Payable:</strong>
+            ₹${total.toLocaleString("en-IN")}
+        </p>
+
+    `;
+
+    showPageWithoutReload(
+        "checkout"
+    );
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+   POST /orders
+   ===================================================== */
+
+async function processOrder(event) {
+
+    event.preventDefault();
+
+    /* Login required */
+
+    if (!isLoggedIn()) {
+
+        alert(
+            "Please login first to place an order."
+        );
+
+        showPage("login");
+
+        return;
+
+    }
+
+    if (!activeCheckoutItem) {
+
+        alert(
+            "No product selected for checkout."
+        );
+
+        return;
+
+    }
+
+    /* Get checkout details */
+
+    const fullName =
+        document
+            .getElementById(
+                "checkoutName"
+            )
+            .value
+            .trim();
+
+    const address =
+        document
+            .getElementById(
+                "checkoutAddress"
+            )
+            .value
+            .trim();
+
+    const paymentMethod =
+        document
+            .getElementById(
+                "paymentMethod"
+            )
+            .value;
+
+    if (
+        !fullName ||
+        !address ||
+        !paymentMethod
+    ) {
+
+        alert(
+            "Please fill all checkout details."
+        );
+
+        return;
+
+    }
+
+    /* Calculate order */
+
+    let productName = "";
+
+    let totalAmount = 0;
+
+    if (
+        activeCheckoutItem.type ===
+        "single"
+    ) {
+
+        const product =
+            activeCheckoutItem.data;
+
+        productName =
+            getProductName(product);
+
+        totalAmount =
+            getProductPrice(product);
+
+    }
+
+    else if (
+        activeCheckoutItem.type ===
+        "cart"
+    ) {
+
+        const items =
+            activeCheckoutItem.data;
+
+        productName =
+            items
+                .map(
+                    item =>
+                        getProductName(item)
+                )
+                .join(", ");
+
+        totalAmount =
+            items.reduce(
+                (sum, item) =>
+                    sum +
+                    getProductPrice(item),
+                0
+            );
+
+    }
+
+    /*
+     * This object matches Order.java
+     */
+
+    const order = {
+
+        userEmail:
+            getLoggedUserEmail(),
+
+        productName:
+            productName,
+
+        totalAmount:
+            totalAmount,
+
+        deliveryAddress:
+            address,
+
+        paymentMethod:
+            paymentMethod,
+
+        status:
+            "PLACED"
+
+    };
+
+    console.log(
+        "Sending order to backend:",
+        order
+    );
+
+    try {
+
+        /*
+         * POST /orders
+         */
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/orders",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify(order)
+
+                }
+            );
+
+        if (!response.ok) {
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                "Order API error:",
+                errorText
+            );
+
+            throw new Error(
+                "HTTP " +
+                response.status
+            );
+
+        }
+
+        /*
+         * Saved Order returned
+         */
+
+        const savedOrder =
+            await response.json();
+
+        console.log(
+            "Order saved in MySQL:",
+            savedOrder
+        );
+
+        /*
+         * Success
+         */
+
+        alert(
+
+            "Order Placed Successfully! ✅\n\n" +
+
+            "Order ID: " +
+            savedOrder.id +
+
+            "\n\n" +
+
+            "Thank you for shopping with ShopCentral!"
+
+        );
+
+        /*
+         * Clear cart if cart checkout
+         */
+
+        if (
+            activeCheckoutItem.type ===
+            "cart"
+        ) {
+
+            cart = [];
+
+            updateCartUI();
+
+        }
+
+        /*
+         * Reset checkout
+         */
+
+        activeCheckoutItem = null;
+
+        document.getElementById(
+            "checkoutName"
+        ).value = "";
+
+        document.getElementById(
+            "checkoutAddress"
+        ).value = "";
+
+        document.getElementById(
+            "paymentMethod"
+        ).value = "upi";
+
+        /*
+         * Go Home
+         */
+
+        showPage("home");
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Place Order Error:",
+            error
+        );
+
+        alert(
+
+            "Order could not be placed. ❌\n\n" +
+
+            "Please make sure Spring Boot " +
+            "backend is running on port 8080."
+
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CONTACT
+   ===================================================== */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Message Sent Successfully! ✅"
+    );
+
+}
+
+
+/* =====================================================
+   SECURITY
+   ===================================================== */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   START APPLICATION
+   ===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        console.log(
+            "ShopCentral frontend started."
+        );
+
+        updateAuthUI();
+
+        updateCartUI();
+
+        await loadProducts();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
